@@ -34,10 +34,12 @@ jobs:
           app_name: shiftev-app
           token: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
           images: '[
+                    {
                       "name": "shiftev-app",
                       "image":{
                         "registry_type": "DOCR",
                         "repository": "shiftev-app",
                         "tag": "latest"
                       },
+                     } 
                     ]'
