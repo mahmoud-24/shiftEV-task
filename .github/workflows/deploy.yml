@@ -14,7 +14,6 @@ jobs:
         with:
           repository: mahmoud-24/shiftEV-task
           ref: main
-          path: ./app
 
       - name: Login to Digital Ocean Registry
         uses: docker/login-action@v1
@@ -24,9 +23,7 @@ jobs:
           password: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
 
       - name: Build latest
-        run : |
-          cd ./app
-          docker build -t registry.digitalocean.com/mmelegy/shiftev-app .
+        run: docker build -t registry.digitalocean.com/mmelegy/shiftev-app .
 
       - name: Push to Digital Ocean Registry
         run: docker push registry.digitalocean.com/mmelegy/shiftev-app
