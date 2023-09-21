@@ -33,13 +33,8 @@ jobs:
         with:
           app_name: shiftev-app
           token: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
-          images: '[
-                    {
+          images: '[{
                       "name": "shiftev-app",
-                      "image":{
-                        "registry_type": "DOCR",
-                        "repository": "shiftev-app",
-                        "tag": "latest"
-                      },
-                     } 
-                    ]'
+                      "repository": "registry.digitalocean.com/mmelegy/shiftev-app",
+                      "tag": "latest"
+                     }]'
