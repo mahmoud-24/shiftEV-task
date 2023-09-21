@@ -1,0 +1,30 @@
+name: Build and Push Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          repository: mahmoud-24/shiftEV-task
+          ref: main
+          path: ./app
+
+      - name: Login to Digital Ocean Registry
+        uses: docker/login-action@v1
+        with:
+          registry: registry.digitalocean.com
+          username: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+          password: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+
+      - name: Build latest
+        run : |
+          cd ./app
+          docker build -t registry.digitalocean.com/mmelegy/shiftev-app .
+
+      - name: Push to Digital Ocean Registry
+        run: docker push registry.digitalocean.com/mmelegy/shiftev-app
