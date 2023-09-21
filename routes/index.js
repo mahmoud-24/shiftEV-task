@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('index', { title: 'Shift EV WebApp >_<' });
+    res.render('index', { title: 'Shift EV WebApp' });
 });
 
 module.exports = router;
