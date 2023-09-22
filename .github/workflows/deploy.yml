@@ -32,15 +32,23 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    # - name: Install doctl
+    #   env:
+    #       DOCTL_API_TOKEN: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+    #   uses: digitalocean/app_action@v1.1.5
+    #   with:
+    #     app_name: shiftev-app
+    #     token: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+    #     images: '[{
+    #                    "name": "shiftev-app",
+    #                    "repository": "registry.digitalocean.com/mmelegy/shiftev-app",
+    #                   "tag": "latest"
+    #                   }]'
+
     - name: Install doctl
-      env:
-          DOCTL_API_TOKEN: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
-      uses: digitalocean/app_action@v1.1.5
+      uses: digitalocean/action-doctl@v2
       with:
-        app_name: shiftev-app
         token: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
-        images: '[{
-                       "name": "shiftev-app",
-                       "repository": "registry.digitalocean.com/mmelegy/shiftev-app",
-                      "tag": "latest"
-                      }]'
+
+    - name: Deploy DigitalOcean
+      run: doctl apps update shiftev-app                  
