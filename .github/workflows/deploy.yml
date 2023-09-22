@@ -34,14 +34,12 @@ jobs:
     steps:
     - name: Install doctl
       run: |
-          wget -q https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-linux-amd64.tar.gz
-          tar -xvf doctl-2.3.0-linux-amd64.tar.gz
-          chmod +x doctl
-          sudo mv doctl /usr/local/bin/
-          doctl version
+          curl -sL https://github.com/digitalocean/doctl/releases/latest/download/doctl-$(uname -s)-$(uname -m) -o /usr/local/bin/doctl
+          chmod +x /usr/local/bin/doctl
+          doctl auth init -t ${{ secrets.DIGITAL_OCEAN_TOKEN }
     - name: DigitalOcean App Platform deployment
       run: |
-          doctl apps deploy shiftev-app --spec app-spec.yaml
+          doctl apps update shiftev-app --spec app-spec.yaml
       env:
           DOCTL_API_TOKEN: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
         #uses: digitalocean/app_action@v1.1.5
