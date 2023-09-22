@@ -34,9 +34,8 @@ jobs:
     steps:
     - name: Install doctl
       run: |
-          curl -LO https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-linux-amd64
-          chmod +x doctl-2.3.0-linux-amd64
-          sudo mv doctl-2.3.0-linux-amd64 /usr/local/bin/doctl
+          curl -sL https://github.com/digitalocean/doctl/releases/latest/download/doctl-$(uname -s)-$(uname -m) -o /usr/local/bin/doctl
+          chmod +x /usr/local/bin/doctl
           doctl version
     - name: DigitalOcean App Platform deployment
       run: |
