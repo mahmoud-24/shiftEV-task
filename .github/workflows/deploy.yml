@@ -32,10 +32,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: DigitalOcean App Platform deployment
-        run: |
+    - name: Install doctl
+      run: |
+          curl -sL https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-linux-amd64.tar.gz | tar -xzv
+          sudo mv ~/doctl /usr/local/bin
+          doctl version
+    - name: DigitalOcean App Platform deployment
+      run: |
           doctl apps deploy shiftev-app --spec app-spec.yaml
-        env:
+      env:
           DOCTL_API_TOKEN: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
         #uses: digitalocean/app_action@v1.1.5
         # with:
