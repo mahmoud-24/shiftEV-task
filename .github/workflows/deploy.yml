@@ -49,6 +49,5 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
-
-    - name: Deploy DigitalOcean
-      run: doctl apps update shiftev-app                  
+        run: doctl apps update shiftev-app
+                      
