@@ -7,6 +7,7 @@ This project is aimed at deploying a dockerized web application on Digital Ocean
 ## Continuous Integration CI
 ### Tool Used 
 1- GitHub Actions
+
 2- DigitalOcean Container Registry
 
 create a CI configuration file in the GitHub repository. This file defines the CI workflow.
@@ -42,11 +43,15 @@ docker push registry.digitalocean.com/mmelegy/shiftev-app
 
 3- After a successfully deploy statge just go to the APP and hit the secured URL link to open the web application.
 
+### Successfully WorkFlows
+![home_Page Image](./pictures/workflow.png)
+
 ### The application is successfully deployed!🚀 
 ```
 https://shiftev-app-lcqo7.ondigitalocean.app/
 ```
-
+![home_Page Image](./pictures/app.png)
+![home_Page Image](./pictures/url.png)
 
 ## How to Run Locally!
 ### prerequisites
@@ -74,4 +79,3 @@ docker run -p 8080:8080 <your-image-name>
 ```
 
 - Access the Web Application 
-
